@@ -11,7 +11,7 @@ $options = array(
         'desc'  => '最新消息显示在全站导航条下方，非常给力的推广位置',
         'id'    => "git_tui",
         'type'  => 'textarea',
-        'std'   => '<li>欢迎访问乐趣公园网站，WordPress信息，WordPress教程，推荐使用最新版火狐浏览器和Chrome浏览器访问本网站，欢迎加入乐趣公园<code><a target="_blank" href="http://googlo.me/go/qun"><i class="fa fa-qq"></i> QQ群</a></code></li><li>Git主题现已支持滚动公告栏功能，兼容其他浏览器，看到的就是咯，在后台最新消息那里用li标签添加即可。</li><li>最新版Git主题已支持说说碎语功能，可像添加文章一样直接添加说说，新建说说页面即可，最后重新保存固定连接，<a target="_blank" href="http://googlo.me/shuo.html">演示地址</a></li><li>百度口碑求点赞啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊<a target="_blank" href="http://koubei.baidu.com/s/googlo.me">http://koubei.baidu.com/s/googlo.me</a></li><li>如果您觉得本站非常有看点，那么赶紧使用Ctrl+D 收藏乐趣公园吧</li><li>云落的淘宝店铺已经开张了哦，传送门：<a target="_blank" href="http://shop116317755.taobao.com">http://shop116317755.taobao.com</a></li>'
+        'std'   => '<li>test</li>'
     ),
     array(
         'name'  => '友情链接页面',
@@ -460,7 +460,7 @@ $options = array(
         'desc'  => '此处输入的文字将出现在每篇文章最底部，你可以使用：{{title}}表示文章标题，{{link}}表示文章链接',
         'id'    => "git_copyright_b",
         'type'  => 'textarea',
-        'std'   => '乐趣公园 , 版权所有丨如未注明 , 均为原创丨本网站采用<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" rel="nofollow" target="_blank" title="BY-NC-SA授权协议">BY-NC-SA</a>协议进行授权 , 转载请注明<a href="{{link}}" target="_blank" title="{{title}}">{{title}}</a>！'
+        'std'   => '载请注明<a href="{{link}}" target="_blank" title="{{title}}">{{title}}</a>'
     ),
     array(
         'type'  => 'panelend'
@@ -1042,7 +1042,7 @@ $options = array(
         'desc'  => '在全站页面footer部分出现，可放置网站的版权信息等等',
         'id'    => 'git_footcode',
         'type'  => 'textarea',
-        'std'   => 'Copyright © 2014-2015 <a href="/" title="乐趣公园">乐趣公园</a> | <a rel="nofollow" target="_blank" href="/about.html">关于网站</a> | <a rel="nofollow" target="_blank" href="/tags.html">标签汇总</a> | <a rel="nofollow" target="_blank" href="/archive.html">文章归档</a> | <a rel="nofollow" target="_blank" href="/links.html">友情链接</a> | <a href="/sitemap.html" target="_blank" title="站点地图（HTML版）">网站地图</a> | 由 <a rel="nofollow" target="_blank" href="http://googlo.me/go/hengtian">衡天主机</a> &amp; <a rel="nofollow" target="_blank" href="http://googlo.me/go/qiniu">七牛</a> &amp; <a href="/wp-admin">强力驱动</a>'
+        'std'   => ''
     ),
     array(
         'name'  => '全站底部脚本代码',
@@ -1579,7 +1579,7 @@ switch ( $value['type'] ) {
     <th><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
     <td>
         <label>
-        <input name="<?php echo $value['id']; ?>" class="regular-text" id="<?php echo $value['id']; ?>" type="password" value="<?php if ( $optionsSetup || get_option( $value['id'] ) != '') { echo get_option( $value['id'] ); } else { echo $value['std']; } ?>" />
+        <input name="<?php echo $value['id']; ?>" class="regular-text" id="<?php echo $value['id']; ?>" type="password" value="<?php if ( $optionsSetup || get_option( $value['id'] ) != '') { echo get_option( $value['id'] ); } else { echo isset($value['std']) ? $value['std'] : ''; } ?>" />
         <span class="description"><?php echo $value['desc']; ?></span>
         </label>
     </td>
@@ -1592,7 +1592,7 @@ switch ( $value['type'] ) {
     <th><?php echo $value['name']; ?></th>
     <td>
         <p><label for="<?php echo $value['id']; ?>"><?php echo $value['desc']; ?></label></p>
-        <p><textarea name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" rows="5" cols="50" class="large-text code"><?php if ( $optionsSetup || get_option( $value['id'] ) != '') { echo stripslashes(get_option( $value['id'] )); } else { echo $value['std']; } ?></textarea></p>
+        <p><textarea name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" rows="5" cols="50" class="large-text code"><?php if ( $optionsSetup || get_option( $value['id'] ) != '') { echo stripslashes(get_option( $value['id'] )); } else { echo isset($value['std']) ? $value['std'] : ''; } ?></textarea></p>
     </td>
 </tr>
 <?php

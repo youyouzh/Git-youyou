@@ -25,7 +25,7 @@ add if isset to check
 4.repair use of undefined constant in function.php on lines 2351, 2302, 1137
 add double ""
 
-5.repair undefined index: page in theme-option on lines 1487, 1499, 1515, 1516
+5.repair undefined index: page in theme-option on lines 1487, 1499, 1515, 1516, 1595
 and isset to check
 
 6.repair the parameter 'call_get_posts' in index.php on line 21
