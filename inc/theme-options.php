@@ -1672,16 +1672,7 @@ switch ( $value['type'] ) {
 ?>
 <div class="panel" id="about_theme">
 <h2>主题的那些事</h2>
-        <p>&nbsp;&nbsp;这款主题一开始来自于大前端的D8主题，优秀的D8主题在经过欲思这里，欲思对这款主题进行了大量的修改，对本款主题的发展起到了非常重要的作用。</p>
-        <p>&nbsp;&nbsp;云落在正式建站的时候选择了这款主题并且一直使用到现在，这款主题进行了N次的代码修改，有的地方是小修改，有的地方事一些大的修改，在欲思主题的基础上面做了很多二次开发，随着主题的修改进程，个人对WordPress的理解也随之加深，对于WordPress的应用也较以前有了更深的熟练。</p>
-        <p>&nbsp;&nbsp;故，在经过多次修改后，自觉主题修改的足够完整，更名以将其与欲思主题以区分，并且将其代码托管至<a href="https://coding.net/u/googlo/p/Git/git" target="_blank">Coding</a>，并且将其更名为：Git ！</p>
-        <p>&nbsp;&nbsp;定名为Git，首先是因为主题采用Git版本系统管理代码的，写的最多的代码就是Git了，另外G代表我的Googlo.Me，遂定名为Git。</p>
-        <p>&nbsp;&nbsp;感谢大前端的D8主题，感谢欲思的欲思主题，感谢小影的主题，感谢知更鸟的主题，感谢露兜博客，感谢devework，感谢开源中国，感谢一直跟随主题版本升级的朋友们</p>
-<h2>支持云落</h2>
-<p>如果您觉的这款主题很赞，欢迎您扫码支持云落，<font color="#ff0000">PS.主题不会用，扫码之后联系云落QQ</font></p>
-<img src="https://img.alicdn.com/imgextra/i1/1597576229/TB2ov76lXXXXXb0XpXXXXXXXXXX_!!1597576229.jpg_310x310.jpg"></img>
-<h2>联系云落</h2>
-<a class="button button-primary" href="http://googlo.me/about.html" target="_blank">乐趣公园留言板</a>
+        <p>&nbsp;该主题基于Git主题做了很多修改，Git主题基于欲思主题和DB主题。</p>
 </div>
 <p class="submit">
     <input name="submit" type="submit" class="button button-primary" value="保存选项"/>

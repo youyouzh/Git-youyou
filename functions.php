@@ -2294,14 +2294,14 @@ function git_custom_adminbar_menu($meta = TRUE) {
         'title' => '主题选项', /* 设置链接名 */
         'href' => 'admin.php?page=theme-options.php'
     ));
-    $wp_admin_bar->add_menu(array(
-        'id' => 'git_guide',
-        'title' => 'Git主题使用文档', /* 设置链接名 */
-        'href' => 'http://googlo.me/archives/3275.html', /* 设置链接地址 */
-        'meta' => array(
-            'target' => '_blank'
-        )
-    ));
+//    $wp_admin_bar->add_menu(array(
+//        'id' => 'git_guide',
+//        'title' => 'Git主题使用文档', /* 设置链接名 */
+//        'href' => 'http://googlo.me/archives/3275.html', /* 设置链接地址 */
+//        'meta' => array(
+//            'target' => '_blank'
+//        )
+//    ));
 }
 add_action('admin_bar_menu', 'git_custom_adminbar_menu', 100);
 //支持中文名注册，来自肚兜
