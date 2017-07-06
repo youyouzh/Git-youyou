@@ -174,7 +174,10 @@ if (git_get_option('git_pagehtml_b') ):
 endif;
 
 //远程图片保存
-$git_remote_pic = get_post_meta($post->ID, 'git_remote_pic', true);
+if (isset($post))
+{
+    $git_remote_pic = get_post_meta($post->ID, 'git_remote_pic', true);
+}
 if (git_get_option('git_yuanpic_b')&&!empty($_POST['git_remote_pic'])):
     function googlo_auto_save_image($content) {
         $upload_path = '';
@@ -302,7 +305,6 @@ function footerScript() {
         }else{
         wp_register_script('jquery', get_template_directory_uri() . '/js/jquery.min.js', false, '1.0', false );
         }
-        wp_enqueue_script('jquery');
         wp_register_script('default', get_template_directory_uri() . '/js/global.js', false, '1.0', true );
         wp_enqueue_script('default');
         wp_register_style('style', get_template_directory_uri() . '/style.css', false, '1.0');
@@ -2297,7 +2299,7 @@ function git_custom_adminbar_menu($meta = TRUE) {
         'title' => 'Git主题使用文档', /* 设置链接名 */
         'href' => 'http://googlo.me/archives/3275.html', /* 设置链接地址 */
         'meta' => array(
-            target => '_blank'
+            'target' => '_blank'
         )
     ));
 }
@@ -2345,7 +2347,7 @@ function git_reset_password_message($message, $key) {
     $msg.= network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login) , 'login');
     return $msg;
 }
-add_filter('retrieve_password_message', git_reset_password_message, null, 2);
+add_filter('retrieve_password_message', 'git_reset_password_message', null, 2);
 //保护后台登录
 if(git_get_option('git_admin')):
 function git_login_protection() {

@@ -5,14 +5,14 @@ function git_banners() {
     register_widget('git_banner');
 }
 class git_banner extends WP_Widget {
-    
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_banner',
-            'description' => '显示一个广告(包括富媒体)'
-        );
-        $this->WP_Widget('git_banner', 'Git-广告', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_banner',
+            '广告栏',
+            array('classname' => 'git_banner', 'description' => '显示一个广告(包括富媒体)'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -50,13 +50,14 @@ function git_comments() {
     register_widget('git_comment');
 }
 class git_comment extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_comment',
-            'description' => '显示网友最新评论（头像+名称+评论）'
-        );
-        $this->WP_Widget('git_comment', 'Git-最新评论', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_comment',
+            '最新评论',
+            array('classname' => 'git_comment', 'description' => '显示网友最新评论（头像+名称+评论）'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -149,13 +150,14 @@ function git_postlists() {
     register_widget('git_postlist');
 }
 class git_postlist extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_postlist',
-            'description' => '图文展示（最新文章+热门文章+随机文章）'
-        );
-        $this->WP_Widget('git_postlist', 'Git-聚合文章', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_postlist',
+            '聚合文章',
+            array('classname' => 'git_postlist', 'description' => '图文展示（最新文章+热门文章+随机文章）'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -300,13 +302,14 @@ function git_readers() {
     register_widget('git_reader');
 }
 class git_reader extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_reader',
-            'description' => '显示近期评论频繁的网友头像等'
-        );
-        $this->WP_Widget('git_reader', 'Git-活跃读者', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_reader',
+            '活跃读者',
+            array('classname' => 'git_reader', 'description' => '显示近期评论频繁的网友头像等'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -421,13 +424,14 @@ function git_recs() {
     register_widget('git_rec');
 }
 class git_rec extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_rec',
-            'description' => '五个推荐块'
-        );
-        $this->WP_Widget('git_rec', 'Git-推荐模块', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_rec',
+            '推荐模块',
+            array('classname' => 'git_rec', 'description' => '五个推荐块'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $atitle1 = $instance['atitle1'];
@@ -638,13 +642,14 @@ function git_slicks() {
     register_widget('git_slick');
 }
 class git_slick extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_slick',
-            'description' => '带箭头的小幻灯片'
-        );
-        $this->WP_Widget('git_slick', 'Git-幻灯片(风格二)', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_slick',
+            '幻灯片(风格二)',
+            array('classname' => 'git_slick', 'description' => '带箭头的小幻灯片'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $simg1 = $instance['simg1'];
@@ -787,13 +792,14 @@ function git_slides() {
     register_widget('git_slide');
 }
 class git_slide extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_slide',
-            'description' => '无箭头小幻灯片'
-        );
-        $this->WP_Widget('git_slide', 'Git-幻灯片(风格一)', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_slide',
+            '幻灯片(风格一)',
+            array('classname' => 'git_slide', 'description' => '无箭头小幻灯片'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $img1 = $instance['img1'];
@@ -936,13 +942,14 @@ function git_socials() {
     register_widget('git_social');
 }
 class git_social extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_social',
-            'description' => '在这里显示国内常用的社交网站按钮'
-        );
-        $this->WP_Widget('git_social', 'Git-社交按钮', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_social',
+            '社交按钮',
+            array('classname' => 'git_social', 'description' => '在这里显示国内常用的社交网站按钮'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -973,13 +980,14 @@ function git_subscribes() {
     register_widget('git_subscribe');
 }
 class git_subscribe extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_subscribe',
-            'description' => '显示邮箱订阅组件'
-        );
-        $this->WP_Widget('git_subscribe', 'Git-邮箱订阅', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_subscribe',
+            '邮箱订阅',
+            array('classname' => 'git_subscribe', 'description' => '显示邮箱订阅组件'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $title = (!empty($instance['title'])) ? $instance['title'] : '邮件订阅';
@@ -1046,13 +1054,14 @@ function git_tags() {
     register_widget('git_tag');
 }
 class git_tag extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_tag',
-            'description' => '显示热门标签'
-        );
-        $this->WP_Widget('git_tag', 'Git-标签云', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_tag',
+            '标签云',
+            array('classname' => 'git_tag', 'description' => '显示热门标签'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -1132,13 +1141,14 @@ function git_textbanners() {
     register_widget('git_textbanner');
 }
 class git_textbanner extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_textbanner',
-            'description' => '显示一个文本特别推荐'
-        );
-        $this->WP_Widget('git_textbanner', 'Git-特别推荐', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_textbanner',
+            '特别推荐',
+            array('classname' => 'git_textbanner', 'description' => '显示一个文本特别推荐'));
     }
+
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -1231,13 +1241,14 @@ function git_tongji() {
 }
 add_action('widgets_init', 'git_tongji');
 class git_tongji extends WP_Widget {
-    function __construct() {
-        $widget_ops = array(
-            'classname' => 'git_tongji',
-            'description' => '显示网站的统计信息'
-        );
-        $this->WP_Widget(false, 'Git-网站统计', $widget_ops);
+    public function __construct()
+    {
+        parent::__construct(
+            'git_tongji',
+            '网站统计',
+            array('classname' => 'git_tongji', 'description' => '显示网站的统计信息'));
     }
+
     function form($instance) {
         $instance = wp_parse_args((array)$instance, array(
             'title' => '网站统计',

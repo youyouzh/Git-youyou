@@ -1484,7 +1484,7 @@ $options = array(
 
 function git_add_theme_options_page() {
     global $options;
-    if ($_GET['page'] == basename(__FILE__)) {
+    if (isset($_GET['page']) && isset($_REQUEST['action']) && $_GET['page'] == basename(__FILE__)) {
         if ('update' == $_REQUEST['action']) {
             foreach($options as $value) {
                 if (isset($_REQUEST[$value['id']])) {
@@ -1512,8 +1512,8 @@ add_action('admin_menu', 'git_add_theme_options_page');
 function git_options_page() {
     global $options;
     $optionsSetup = git_get_option('git_options_setup') != '';
-    if ($_REQUEST['update']) echo '<div class="updated"><p><strong>设置已保存。</strong></p></div>';
-    if ($_REQUEST['reset']) echo '<div class="updated"><p><strong>设置已重置。</strong></p></div>';
+    if (isset($_REQUEST['update']) && $_REQUEST['update']) echo '<div class="updated"><p><strong>设置已保存。</strong></p></div>';
+    if (isset($_REQUEST['reset']) && $_REQUEST['reset']) echo '<div class="updated"><p><strong>设置已重置。</strong></p></div>';
 ?>
 
 <div class="wrap">

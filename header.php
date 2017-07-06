@@ -103,6 +103,8 @@ if (git_get_option('git_pichead_b')) { ?>
 <?php
 if (git_get_option('git_tmnav_b')) echo '<style type="text/css">#nav-header{background-color: rgba(85,84,85, 0.5);background: rgba(85,84,85, 0.5);color: rgba(85,84,85, 0.5);}</style>'; ?>
 <?php
+$skin_hover = '#D52D1A';
+$skin_nom = '#E74C3C';
 if (git_get_option('git_skin_b') == 'git_red_b') {
 	$skin_nom = "#E74C3C";
 	$skin_hover = "#D52D1A";
