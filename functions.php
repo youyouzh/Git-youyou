@@ -1134,7 +1134,7 @@ add_filter('login_headertitle', create_function(false, "return get_bloginfo('nam
 */
 function git_esc_html($content) {
     $regex = '/(<pre\s+[^>]*?class\s*?=\s*?[",\'].*?prettyprint.*?[",\'].*?>)(.*?)(<\/pre>)/sim';
-    return preg_replace_callback($regex, git_esc_callback, $content);
+    return preg_replace_callback($regex, 'git_esc_callback', $content);
 }
 function git_esc_callback($matches) {
     $tag_open = $matches[1];

@@ -22,17 +22,11 @@ public function __construct()
 3.repair undefined variable in functions.php 177
 add if isset to check
 
-4.repair use of undefined constant in function.php 2351
+4.repair use of undefined constant in function.php on lines 2351, 2302, 1137
 add double ""
 
-5.repair use of undefined constant target in function.php 2302
-add double ""
-
-6.repair undefined index:page in theme-option on line 1487
+5.repair undefined index: page in theme-option on lines 1487, 1499, 1515, 1516
 and isset to check
 
-7.repair undefined index:action in theme-option on line 1488 1499
-and isset to check
-
-8.repair undefined index:reset and update in theme-option on line 1515 and 1516
-and isset to check
+6.repair the parameter 'call_get_posts' in index.php on line 21
+to use 'ignore_sticky_posts'
