@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') or die('This file can not be loaded directly.');
 
-global $comment_ids; $comment_ids = array();
+global $comment_ids; $comment_ids = array();$comment_i = 0;
 foreach ( $comments as $comment ) {
 	if (get_comment_type() == "comment") {
 		$comment_ids[get_comment_id()] = ++$comment_i;
@@ -14,7 +14,7 @@ $my_email = get_bloginfo ( 'admin_email' );
 $str = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_post_ID = $post->ID AND comment_approved = '1' AND comment_type = '' AND comment_author_email";
 $count_t = $post->comment_count;
 
-date_default_timezone_set(PRC);
+date_default_timezone_set('PRC');
 $closeTimer = (strtotime(date('Y-m-d G:i:s'))-strtotime(get_the_time('Y-m-d G:i:s')))/86400;
 ?>
 <div id="respond" class="no_webshot">
@@ -33,7 +33,7 @@ $closeTimer = (strtotime(date('Y-m-d G:i:s'))-strtotime(get_the_time('Y-m-d G:i:
 			<div class="comt-avatar pull-left">
 				<?php
 					global $current_user;
-					get_currentuserinfo();
+                    wp_get_current_user();
 					if ( is_user_logged_in() )
 						echo get_avatar( $current_user->user_email, $size = '54' , deel_avatar_default() );
 					elseif( !is_user_logged_in() && get_option('require_name_email') && $comment_author_email=='' )

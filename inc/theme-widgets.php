@@ -259,7 +259,7 @@ function githeme_posts_list($orderby, $limit, $cat, $img) {
         'cat' => $cat,
         'orderby' => $orderby,
         'showposts' => $limit,
-        'caller_get_posts' => 1
+        'ignore_sticky_posts' => 1
     );
     query_posts($args);
     while (have_posts()):

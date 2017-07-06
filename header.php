@@ -229,7 +229,7 @@ if (git_get_option('git_search_baidu')) { ?>
 		<?php
 if (git_get_option('git_sign_b')) {
     global $current_user;
-    get_currentuserinfo();
+    wp_get_current_user();
     $uid = $current_user->ID;
     $u_name = get_user_meta($uid, 'nickname', true);
 ?>

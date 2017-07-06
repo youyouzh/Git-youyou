@@ -28,5 +28,9 @@ add double ""
 5.repair undefined index: page in theme-option on lines 1487, 1499, 1515, 1516, 1595
 and isset to check
 
-6.repair the parameter 'call_get_posts' in index.php on line 21
+6.repair the parameter 'call_get_posts' in index.php on line 21 and other file
 to use 'ignore_sticky_posts'
+
+7.repair the notice in comments.php on lines 7,17
+
+8.replace get_currentuserinfo with wp_get_current_user()
