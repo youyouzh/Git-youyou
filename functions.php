@@ -81,7 +81,7 @@ add_filter('admin_footer_text', 'git_admin_footer_text');
         remove_action('pre_post_update', 'wp_save_post_revision');
     }
     //去除自带js
-    wp_deregister_script('l10n');
+//    wp_deregister_script('l10n');  // notice comment the use of deregister is uncorrect
     //修改默认发信地址
     add_filter('wp_mail_from', 'deel_res_from_email');
     add_filter('wp_mail_from_name', 'deel_res_from_name');
@@ -295,16 +295,17 @@ function footerScript() {
     if (!is_admin()) {
         wp_deregister_script('jquery');
         if(git_get_option('git_jqcdn')=='git_jqcdn_qiniu'){
-            wp_register_script('jquery', 'http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js', false, '1.0', false );
+            wp_register_script('jquery', 'http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js', false, '1.0', true );
         }elseif(git_get_option('git_jqcdn')=='git_jqcdn_upai'){
-            wp_register_script('jquery', 'http://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.8.3.min.js', false, '1.0', false );
+            wp_register_script('jquery', 'http://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.8.3.min.js', false, '1.0', true );
         }elseif(git_get_option('git_jqcdn')=='git_jqcdn_360'){
-            wp_register_script('jquery', 'http://libs.useso.com/js/jquery/1.8.3/jquery.min.js', false, '1.0', false );
+            wp_register_script('jquery', 'http://libs.useso.com/js/jquery/1.8.3/jquery.min.js', false, '1.0', true );
         }elseif(git_get_option('git_jqcdn')=='git_jqcdn_sae'){
-            wp_register_script('jquery', 'http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js', false, '1.0', false );
+            wp_register_script('jquery', 'http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js', false, '1.0', true );
         }else{
-        wp_register_script('jquery', get_template_directory_uri() . '/js/jquery.min.js', false, '1.0', false );
+            wp_register_script('jquery', get_template_directory_uri() . '/js/jquery.min.js', false, '1.8.3', true );
         }
+        wp_enqueue_script('jquery');
         wp_register_script('default', get_template_directory_uri() . '/js/global.js', false, '1.0', true );
         wp_enqueue_script('default');
         wp_register_style('style', get_template_directory_uri() . '/style.css', false, '1.0');
@@ -312,6 +313,7 @@ function footerScript() {
     }
 }
 add_action('wp_enqueue_scripts', 'footerScript');
+
 if (!function_exists('deel_paging')):
     function deel_paging() {
         $p = 4;
@@ -541,7 +543,14 @@ function comment_mail_notify($comment_id) {
         $wp_email = 'no-reply@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME'])); // e-mail 发出点, no-reply 可改为可用的 e-mail.
         $to = trim(get_comment($parent_id)->comment_author_email);
         $subject = 'Hi，您在 [' . get_option("blogname") . '] 的留言有人回复啦！';
-		$message = '<div style="color:#555;font:12px/1.5 微软雅黑,Tahoma,Helvetica,Arial,sans-serif;width:650px;margin:50px auto;border-top: none;box-shadow:0 0px 3px #aaaaaa;" ><table border="0" cellspacing="0" cellpadding="0"><tbody><tr valign="top" height="2"><td valign="top"><div style="background-color:white;border-top:2px solid #12ADDB;line-padding:0 15px 12px;width:650px;color:#555555;font-family:微软雅黑, Arial;;font-size:12px;"><h2 style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:8px 0 10px 8px;"><span style="color: #12ADDB;font-weight: bold;">&gt; </span>您在 <a style="text-decoration:none; color:#58B5F5;font-weight:600;" target="_blank" href="' . home_url() . '">' . $blogname . '</a> 网站上的留言有回复啦！</h2><div style="padding:0 12px 0 12px;margin-top:18px"><p>您好, ' . trim(get_comment($parent_id)->comment_author) . '! 您发表在文章 <a style="text-decoration:none;" target="_blank" href="' . get_the_permalink($comment->comment_post_ID) . '">《' . get_the_title($comment->comment_post_ID) . '》</a> 的评论:</p><p style="background-color: #EEE;border: 1px solid #DDD;padding: 20px;margin: 15px 0;">' . nl2br(strip_tags(get_comment($parent_id)->comment_content)) . '</p><p>' . trim($comment->comment_author) . ' 给您的回复如下:</p><p style="background-color: #EEE;border: 1px solid #DDD;padding: 20px;margin: 15px 0;">' . nl2br(strip_tags($comment->comment_content)) . '</p><p>您可以点击 <a style="text-decoration:none; color:#5692BC" target="_blank" href="' . htmlspecialchars(get_comment_link($parent_id)) . '">这里查看回复的完整內容</a>，也欢迎再次光临 <a style="text-decoration:none; color:#5692BC" target="_blank" href="' . home_url() . '">' . $blogname . '</a>。祝您天天开心，欢迎下次访问 <a style="text-decoration:none; color:#5692BC" target="_blank" href="' . home_url() . '">' . $blogname . '</a>！谢谢。</p><p style="float:right;">(此邮件由系统自动发出, 请勿回复)</p></div></div></td></tr></tbody></table><div style="color:#fff;background-color: #12ADDB;text-align : center;height:35px;padding-top:15px">Copyright © 2014-2016 ' . $blogname . '</div></div>';
+		$message = '<div style="color:#555;font:12px/1.5 微软雅黑,Tahoma,Helvetica,Arial,sans-serif;width:650px;margin:50px auto;border-top: none;box-shadow:0 0px 3px #aaaaaa;" >' .
+            '<table border="0" cellspacing="0" cellpadding="0"><tbody><tr valign="top" height="2"><td valign="top"><div style="background-color:white;border-top:2px solid #12ADDB;line-padding:0 15px 12px;width:650px;color:#555555;font-family:微软雅黑, Arial;;font-size:12px;">'.
+            '<h2 style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:8px 0 10px 8px;"><span style="color: #12ADDB;font-weight: bold;">&gt; </span>您在 <a style="text-decoration:none; color:#58B5F5;font-weight:600;" target="_blank" href="' . home_url() .
+            '">' . $blogname . '</a> 网站上的留言有回复啦！</h2><div style="padding:0 12px 0 12px;margin-top:18px"><p>您好, ' . trim(get_comment($parent_id)->comment_author) . '! 您发表在文章 <a style="text-decoration:none;" target="_blank" href="' .
+            get_the_permalink($comment->comment_post_ID) . '">《' . get_the_title($comment->comment_post_ID) . '》</a> 的评论:</p><p style="background-color: #EEE;border: 1px solid #DDD;padding: 20px;margin: 15px 0;">' . nl2br(strip_tags(get_comment($parent_id)->comment_content)) .
+            '</p><p>' . trim($comment->comment_author) . ' 给您的回复如下:</p><p style="background-color: #EEE;border: 1px solid #DDD;padding: 20px;margin: 15px 0;">' . nl2br(strip_tags($comment->comment_content)) . '</p><p>您可以点击 <a style="text-decoration:none; color:#5692BC" target="_blank" href="' .
+            htmlspecialchars(get_comment_link($parent_id)) . '">这里查看回复的完整內容</a>，也欢迎再次光临 <a style="text-decoration:none; color:#5692BC" target="_blank" href="' . home_url() . '">' . $blogname . '</a>。祝您天天开心，欢迎下次访问 <a style="text-decoration:none; color:#5692BC" target="_blank" href="' .
+            home_url() . '">' . $blogname . '</a>！谢谢。</p><p style="float:right;">(此邮件由系统自动发出, 请勿回复)</p></div></div></td></tr></tbody></table><div style="color:#fff;background-color: #12ADDB;text-align : center;height:35px;padding-top:15px">Copyright © 2014-2016 ' . $blogname . '</div></div>';
         $from = "From: \"" . get_option('blogname') . "\" <$wp_email>";
         $headers = "$from\nContent-Type: text/html; charset=" . get_option('blog_charset') . "\n";
         wp_mail($to, $subject, $message, $headers);
