@@ -81,7 +81,7 @@ add_filter('admin_footer_text', 'git_admin_footer_text');
         remove_action('pre_post_update', 'wp_save_post_revision');
     }
     //去除自带js
-//    wp_deregister_script('l10n');  // notice comment the use of deregister is uncorrect
+    wp_deregister_script('l10n');  // notice：the use of deregister is uncorrect
     //修改默认发信地址
     add_filter('wp_mail_from', 'deel_res_from_email');
     add_filter('wp_mail_from_name', 'deel_res_from_name');
@@ -310,6 +310,15 @@ function footerScript() {
         wp_enqueue_script('default');
         wp_register_style('style', get_template_directory_uri() . '/style.css', false, '1.0');
         wp_enqueue_style('style');
+        // 添加通用共有脚本文件和样式文件
+        /*
+        wp_deregister_script('common');
+        wp_register_script('common', get_template_directory_uri() . '/js/common.js', false, '1.0', true);
+        wp_enqueue_script('common');
+        wp_deregister_style('common');
+        wp_register_style('common', get_template_directory_uri() . '/css/common.css', false, '1.0');
+        wp_enqueue_style('common');
+        */
     }
 }
 add_action('wp_enqueue_scripts', 'footerScript');
