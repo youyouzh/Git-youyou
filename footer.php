@@ -26,8 +26,8 @@ if (git_get_option('git_superfoot_b') && !G_is_mobile()) { ?>
             if (git_get_option('git_footcode'))
                 echo git_get_option('git_footcode'); ?>
             Copyright©2017<a href="http://uusama.com" title="悠悠"> 悠悠 </a>|
-            Powered by<a href="http://wordpress.com"> WordPress </a>|
-            <a href="http://uusama.com/sitemap_index.xml" title="站点地图"> 站点地图 </a>|
+            Powered by<a href="http://wordpress.com" target="_blank"> WordPress </a>|
+            <a href="http://uusama.com/sitemap_index.xml" title="站点地图" target="_blank"> 站点地图 </a>|
             Theme by<a href="http://googlo.me/" title="乐趣公园" target="_blank"> Git </a>
             <span class="trackcode pull-right"><?php
                 if (git_get_option('git_track')) echo git_get_option('git_track'); ?>
@@ -41,7 +41,7 @@ if (git_get_option('git_copydialog_b') && is_singular())
         'alert("复制成功！若要转载请务必保留原文链接，申明来源，谢谢合作！");}</script>'; ?>
 <?php
 if (git_get_option('git_snow_b')) { ?>
-    <script type="text/javascript" src="assets/js/snow.js"></script>
+    <script type="text/javascript" src="<?php get_template_directory_uri() ?>/assets/js/snow.js"></script>
     <?php
 } ?>
 <?php
