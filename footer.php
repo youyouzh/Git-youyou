@@ -26,7 +26,8 @@ if (git_get_option('git_superfoot_b') && !G_is_mobile()) { ?>
             if (git_get_option('git_footcode'))
                 echo git_get_option('git_footcode'); ?>
             Copyright©2017<a href="http://uusama.com" title="悠悠"> 悠悠 </a>|
-            Powered by<a href="http://wordpress.com"> WordPress </a>|
+            Powered by<a href="http://wordpress.com"> WordPress </a>| 
+            <a href="http://uusama.com/sitemap_index.xml"> 站点地图 </a>a>
             Theme by<a href="http://googlo.me/" title="乐趣公园" target="_blank"> Git </a>
             <span class="trackcode pull-right"><?php
                 if (git_get_option('git_track')) echo git_get_option('git_track'); ?>
