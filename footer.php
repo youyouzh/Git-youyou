@@ -41,7 +41,7 @@ if (git_get_option('git_copydialog_b') && is_singular())
         'alert("复制成功！若要转载请务必保留原文链接，申明来源，谢谢合作！");}</script>'; ?>
 <?php
 if (git_get_option('git_snow_b')) { ?>
-    <script type="text/javascript" src="<?php get_template_directory_uri() ?>/assets/js/snow.js"></script>
+    <script type="text/javascript" src="<?php echo(get_template_directory_uri()) ?>/assets/js/snow.js"></script>
     <?php
 } ?>
 <?php
