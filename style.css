@@ -3127,7 +3127,7 @@ button.btn::-moz-focus-inner,input[type=submit].btn::-moz-focus-inner {
     border-radius:4px;
     box-shadow:0 3px 7px rgba(0,0,0,.3);
     -webkit-background-clip:padding-box;
-    -moz-background-clip:padding-box;
+    /*-moz-background-clip:padding-box;*/
     background-clip:padding-box;
     outline:0
 }
@@ -5098,7 +5098,7 @@ a.badge-inverse:hover .label-arrow,a.label-inverse:hover .label-arrow {
     -o-border-radius:100px
 }
 @-ms-viewport {
-    width:device-width
+    /*width:device-width*/
 }
 .article-content pre {
     background-color:#f8f8f8;
@@ -5856,7 +5856,8 @@ a.badge-inverse:hover .label-arrow,a.label-inverse:hover .label-arrow {
     -webkit-border-radius:4px;
     -moz-border-radius:4px;
     border-radius:4px;
-    -webkit-box-shadow:inset 0 -1px 0 #3333sf
+    -webkit-box-shadow:inset 0 -1px 0
+    /*#3333sf*/
 }
 .sinaweibo {
     background:#f78585
@@ -6092,7 +6093,7 @@ a.badge-inverse:hover .label-arrow,a.label-inverse:hover .label-arrow {
     -webkit-box-shadow:inset 0 1px 0 0 #54a3f7;
     box-shadow:inset 0 1px 0 0 #54a3f7;
     background:-webkit-gradient(linear,left top,left bottom,color-stop(.05,#007dc1),color-stop(1,#0061a7));
-    background:-moz-linear-gr adient(top,#007dc1 5%,#0061a7 100%);
+    background:-moz-linear-gradient(top,#007dc1 5%,#0061a7 100%);
     background:-webkit-linear-gradient(top,#007dc1 5%,#0061a7 100%);
     background:-o-linear-gradient(top,#007dc1 5%,#0061a7 100%);
     background:-ms-linear-gradient(top,#007dc1 5%,#0061a7 100%);
@@ -6114,7 +6115,7 @@ a.badge-inverse:hover .label-arrow,a.label-inverse:hover .label-arrow {
 }
 .bluebtn:hover {
     background:-webkit-gradient(linear,left top,left bottom,color-stop(.05,#0061a7),color-stop(1,#007dc1));
-    background:-moz-linear-gr adient(top,#0061a7 5%,#007dc1 100%);
+    background:-moz-linear-gradient(top,#0061a7 5%,#007dc1 100%);
     background:-webkit-linear-gradient(top,#0061a7 5%,#007dc1 100%);
     background:-o-linear-gradient(top,#0061a7 5%,#007dc1 100%);
     background:-ms-linear-gradient(top,#0061a7 5%,#007dc1 100%);
@@ -6131,7 +6132,7 @@ a.badge-inverse:hover .label-arrow,a.label-inverse:hover .label-arrow {
     -webkit-box-shadow:inset 0 1px 0 0 #fff6af;
     box-shadow:inset 0 1px 0 0 #fff6af;
     background:-webkit-gradient(linear,left top,left bottom,color-stop(.05,#ffec64),color-stop(1,#ffab23));
-    background:-moz-linear-gr adient(top,#ffec64 5%,#ffab23 100%);
+    background:-moz-linear-gradient(top,#ffec64 5%,#ffab23 100%);
     background:-webkit-linear-gradient(top,#ffec64 5%,#ffab23 100%);
     background:-o-linear-gradient(top,#ffec64 5%,#ffab23 100%);
     background:-ms-linear-gradient(top,#ffec64 5%,#ffab23 100%);
@@ -6154,7 +6155,7 @@ a.badge-inverse:hover .label-arrow,a.label-inverse:hover .label-arrow {
 }
 .yellowbtn:hover {
     background:-webkit-gradient(linear,left top,left bottom,color-stop(.05,#ffab23),color-stop(1,#ffec64));
-    background:-moz-linear-gr adient(top,#ffab23 5%,#ffec64 100%);
+    background:-moz-linear-gradient(top,#ffab23 5%,#ffec64 100%);
     background:-webkit-linear-gradient(top,#ffab23 5%,#ffec64 100%);
     background:-o-linear-gradient(top,#ffab23 5%,#ffec64 100%);
     background:-ms-linear-gradient(top,#ffab23 5%,#ffec64 100%);
@@ -6166,13 +6167,16 @@ a.badge-inverse:hover .label-arrow,a.label-inverse:hover .label-arrow {
     position:relative;
     top:1px
 }
-/*! fancyBox看图样式 */.f ancybox-wrap iframe,.fancybox-image,.fancybox-inner,.fancybox-nav,.fancybox-nav span,.fancybox-outer,.fancybox-skin,.fancybox-tmp,.fancybox-wrap,.fancybox-wrap object {
-                       padding:0;
-                       margin:0;
-                       border:0;
-                       outline:0;
-                       vertical-align:top
-                   }
+/*! fancyBox看图样式 */
+.f ancybox-wrap iframe,.fancybox-image,.fancybox-inner,
+.fancybox-nav,.fancybox-nav span,.fancybox-outer,
+.fancybox-skin,.fancybox-tmp,.fancybox-wrap,.fancybox-wrap object {
+    padding:0;
+    margin:0;
+    border:0;
+    outline:0;
+    vertical-align:top
+}
 .fancybox-wrap {
     position:absolute;
     top:0;
@@ -6252,7 +6256,7 @@ a.badge-inverse:hover .label-arrow,a.label-inverse:hover .label-arrow {
     height:100%;
     cursor:pointer;
     text-decoration:none;
-    background:transparent url(css/img/blank.gif);
+    /*background:transparent url(css/img/blank.gif);*/
     -webkit-tap-highlight-color:transparent;
     z-index:8040
 }
@@ -7160,13 +7164,11 @@ input {
     color:#666;
     min-height:60px;
     position:relative;
-    white-space:pre;
     white-space:pre-wrap;
-    white-space:pre-line;
-    white-space:-pre-wrap;
     white-space:-o-pre-wrap;
     white-space:-moz-pre-wrap;
-    white-space:-hp-pre-wrap;
+    white-space:-o-pre-wrap;
+    white-space:-moz-pre-wrap;
     word-wrap:break-word
 }
 .shuoshuo-content p {
@@ -7626,7 +7628,7 @@ input {
 .metacat a {
     font-size:12px;
     position:absolute;
-    top:8;
+    top:8px;
     left:0;
     display:inline-block;
     padding:5px 8px;

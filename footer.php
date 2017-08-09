@@ -38,8 +38,12 @@ if (git_get_option('git_superfoot_b') && !G_is_mobile()) { ?>
 <?php
 if (git_get_option('git_copydialog_b') && is_singular())
     echo '<script type="text/javascript">document.body.oncopy=function(){' .
+<<<<<<< HEAD
         'alert("复制成功！若要转载请务必保留原文链接，申明来源，谢谢合作！");}</script>';
 ?>
+=======
+        'alert("复制成功！若要转载请务必保留原文链接，申明来源，谢谢合作！");}</script>'; ?>
+>>>>>>> origin/master
 <?php
 if (git_get_option('git_snow_b')) { ?>
     <script type="text/javascript" src="assets/js/snow.js"></script>
@@ -72,6 +76,7 @@ if ($dHasShare == true) {
 ?>
 <?php
 if (git_get_option('git_topnav_b') && !G_is_mobile()) { ?>
+<<<<<<< HEAD
     <script type="text/Javascript">
         $(function(){
             $('#nav-header').posfixed({
@@ -83,6 +88,19 @@ if (git_get_option('git_topnav_b') && !G_is_mobile()) { ?>
         });
     </script>
     <?php
+=======
+<script type="text/Javascript">
+$(function(){
+	$('#nav-header').posfixed({
+		distance : 0,
+		pos : 'top',
+		type : 'while',
+		hide : false
+	});
+});
+</script>
+<?php
+>>>>>>> origin/master
 } ?>
 </body>
 </html>
