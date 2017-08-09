@@ -26,8 +26,8 @@ if (git_get_option('git_superfoot_b') && !G_is_mobile()) { ?>
             if (git_get_option('git_footcode'))
                 echo git_get_option('git_footcode'); ?>
             Copyright©2017<a href="http://uusama.com" title="悠悠"> 悠悠 </a>|
-            Powered by<a href="http://wordpress.com"> WordPress </a>| 
-            <a href="http://uusama.com/sitemap_index.xml" title="站点地图"> 站点地图 </a>| 
+            Powered by<a href="http://wordpress.com"> WordPress </a>|
+            <a href="http://uusama.com/sitemap_index.xml" title="站点地图"> 站点地图 </a>|
             Theme by<a href="http://googlo.me/" title="乐趣公园" target="_blank"> Git </a>
             <span class="trackcode pull-right"><?php
                 if (git_get_option('git_track')) echo git_get_option('git_track'); ?>
@@ -71,25 +71,14 @@ if ($dHasShare == true) {
 ?>
 <?php
 if (git_get_option('git_topnav_b') && !G_is_mobile()) { ?>
-    <script type="text/Javascript">
-        $(function(){
-            $('#nav-header').posfixed({
-                distance : 0,
-                pos : 'top',
-                type : 'while',
-                hide : false
-            });
-        });
-    </script>
-    <?php
 <script type="text/Javascript">
 $(function(){
-	$('#nav-header').posfixed({
-		distance : 0,
-		pos : 'top',
-		type : 'while',
-		hide : false
-	});
+    $('#nav-header').posfixed({
+        distance : 0,
+        pos : 'top',
+        type : 'while',
+        hide : false
+    });
 });
 </script>
 <?php
