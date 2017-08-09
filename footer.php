@@ -27,7 +27,7 @@ if (git_get_option('git_superfoot_b') && !G_is_mobile()) { ?>
                 echo git_get_option('git_footcode'); ?>
             Copyright©2017<a href="http://uusama.com" title="悠悠"> 悠悠 </a>|
             Powered by<a href="http://wordpress.com"> WordPress </a>| 
-            <a href="http://uusama.com/sitemap_index.xml"> 站点地图 </a> | 
+            <a href="http://uusama.com/sitemap_index.xml" title="站点地图"> 站点地图 </a>| 
             Theme by<a href="http://googlo.me/" title="乐趣公园" target="_blank"> Git </a>
             <span class="trackcode pull-right"><?php
                 if (git_get_option('git_track')) echo git_get_option('git_track'); ?>
@@ -38,12 +38,7 @@ if (git_get_option('git_superfoot_b') && !G_is_mobile()) { ?>
 <?php
 if (git_get_option('git_copydialog_b') && is_singular())
     echo '<script type="text/javascript">document.body.oncopy=function(){' .
-<<<<<<< HEAD
-        'alert("复制成功！若要转载请务必保留原文链接，申明来源，谢谢合作！");}</script>';
-?>
-=======
         'alert("复制成功！若要转载请务必保留原文链接，申明来源，谢谢合作！");}</script>'; ?>
->>>>>>> origin/master
 <?php
 if (git_get_option('git_snow_b')) { ?>
     <script type="text/javascript" src="assets/js/snow.js"></script>
@@ -76,7 +71,6 @@ if ($dHasShare == true) {
 ?>
 <?php
 if (git_get_option('git_topnav_b') && !G_is_mobile()) { ?>
-<<<<<<< HEAD
     <script type="text/Javascript">
         $(function(){
             $('#nav-header').posfixed({
@@ -88,7 +82,6 @@ if (git_get_option('git_topnav_b') && !G_is_mobile()) { ?>
         });
     </script>
     <?php
-=======
 <script type="text/Javascript">
 $(function(){
 	$('#nav-header').posfixed({
@@ -100,7 +93,6 @@ $(function(){
 });
 </script>
 <?php
->>>>>>> origin/master
 } ?>
 </body>
 </html>
