@@ -3841,6 +3841,15 @@ a.badge-inverse:hover .label-arrow,a.label-inverse:hover .label-arrow {
     padding:10px 20px 20px 20px;
     background-color:#fff
 }
+.article-content h1 {
+    font-size:20px;
+    font-weight:800;
+    margin:20px -20px 20px -24px;
+    padding:10px 20px 9px 10px;
+    line-height:20px;
+    border-left:4px solid #00A62E;
+    background-color:#fbfbfb
+}
 .article-content h2 {
     font-size:18px;
     font-weight:700;
