@@ -5,14 +5,14 @@ function git_banners() {
     register_widget('git_banner');
 }
 class git_banner extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_banner',
-            '广告栏',
-            array('classname' => 'git_banner', 'description' => '显示一个广告(包括富媒体)'));
-    }
 
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_banner',
+            'description' => '显示一个广告(包括富媒体)'
+        );
+        parent::__construct('git_banner', 'Git-广告', $widget_ops);
+    }
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -50,14 +50,13 @@ function git_comments() {
     register_widget('git_comment');
 }
 class git_comment extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_comment',
-            '最新评论',
-            array('classname' => 'git_comment', 'description' => '显示网友最新评论（头像+名称+评论）'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_comment',
+            'description' => '显示网友最新评论（头像+名称+评论）'
+        );
+        parent::__construct('git_comment', 'Git-最新评论', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -77,61 +76,60 @@ class git_comment extends WP_Widget {
     }
     function form($instance) {
 ?>
-		<p>
-			<label>
-				标题：
-				<input class="widefat" id="<?php
+        <p>
+            <label>
+                标题：
+                <input class="widefat" id="<?php
         echo $this->get_field_id('title'); ?>" name="<?php
         echo $this->get_field_name('title'); ?>" type="text" value="<?php
         echo $instance['title']; ?>" />
-			</label>
-		</p>
-		<p>
-			<label>
-				显示数目：
-				<input class="widefat" id="<?php
+            </label>
+        </p>
+        <p>
+            <label>
+                显示数目：
+                <input class="widefat" id="<?php
         echo $this->get_field_id('limit'); ?>" name="<?php
         echo $this->get_field_name('limit'); ?>" type="number" value="<?php
         echo $instance['limit']; ?>" />
-			</label>
-		</p>
-		<p>
-			<label>
-				排除某用户ID：
-				<input class="widefat" id="<?php
+            </label>
+        </p>
+        <p>
+            <label>
+                排除某用户ID：
+                <input class="widefat" id="<?php
         echo $this->get_field_id('outer'); ?>" name="<?php
         echo $this->get_field_name('outer'); ?>" type="number" value="<?php
         echo $instance['outer']; ?>" />
-			</label>
-		</p>
-		<p>
-			<label>
-				排除某文章ID：
-				<input class="widefat" id="<?php
+            </label>
+        </p>
+        <p>
+            <label>
+                排除某文章ID：
+                <input class="widefat" id="<?php
         echo $this->get_field_id('outpost'); ?>" name="<?php
         echo $this->get_field_name('outpost'); ?>" type="text" value="<?php
         echo $instance['outpost']; ?>" />
-			</label>
-		</p>
-		<p>
-			<label>
-				More 显示文字：
-				<input style="width:100%;" id="<?php
+            </label>
+        </p>
+        <p>
+            <label>
+                More 显示文字：
+                <input style="width:100%;" id="<?php
         echo $this->get_field_id('more'); ?>" name="<?php
         echo $this->get_field_name('more'); ?>" type="text" value="<?php
         echo $instance['more']; ?>" size="24" />
-			</label>
-		</p>
-		<p>
-			<label>
-				More 链接：
-				<input style="width:100%;" id="<?php
+            </label>
+        </p>
+        <p>
+            <label>
+                More 链接：
+                <input style="width:100%;" id="<?php
         echo $this->get_field_id('link'); ?>" name="<?php
         echo $this->get_field_name('link'); ?>" type="url" value="<?php
         echo $instance['link']; ?>" size="24" />
-			</label>
-		</p>
-
+            </label>
+        </p>
 <?php
     }
 }
@@ -139,6 +137,7 @@ function mod_newcomments($limit, $outpost, $outer) {
     global $wpdb;
     $sql = "SELECT DISTINCT ID, post_title, post_password, comment_ID, comment_post_ID, comment_author, comment_date_gmt, comment_approved,comment_author_email, comment_type,comment_author_url, SUBSTRING(comment_content,1,40) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID = $wpdb->posts.ID) WHERE comment_post_ID!='" . $outpost . "' AND user_id!='" . $outer . "' AND comment_approved = '1' AND comment_type = '' AND post_password = '' ORDER BY comment_date_gmt DESC LIMIT $limit";
     $comments = $wpdb->get_results($sql);
+        $output='';
     foreach ($comments as $comment) {
         $output.= '<li><a target="_blank" href="' . get_permalink($comment->ID) . '#comment-' . $comment->comment_ID . '" title="' . $comment->post_title . '上的评论">' . str_replace(' src=', ' data-original=', get_avatar($comment->comment_author_email, $size = '36', deel_avatar_default())) . ' <div class="muted"><i>' . strip_tags($comment->comment_author) . '</i>' . timeago($comment->comment_date_gmt) . '说：' . str_replace(' src=', ' data-original=', convert_smilies(strip_tags($comment->com_excerpt))) . '</div></a></li>';
     }
@@ -150,14 +149,13 @@ function git_postlists() {
     register_widget('git_postlist');
 }
 class git_postlist extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_postlist',
-            '聚合文章',
-            array('classname' => 'git_postlist', 'description' => '图文展示（最新文章+热门文章+随机文章）'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_postlist',
+            'description' => '图文展示（最新文章+热门文章+随机文章）'
+        );
+        parent::__construct('git_postlist', 'Git-聚合文章', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -255,7 +253,7 @@ class git_postlist extends WP_Widget {
 }
 function githeme_posts_list($orderby, $limit, $cat, $img) {
     $args = array(
-        'order' => DESC,
+        'order' => 'DESC',
         'cat' => $cat,
         'orderby' => $orderby,
         'showposts' => $limit,
@@ -269,12 +267,17 @@ function githeme_posts_list($orderby, $limit, $cat, $img) {
 <a target="_blank" href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>" ><?php
-        if (git_get_option('git_cdnurl_b')) {
+                if (git_get_option('git_qncdn_b')) {
+                    if(git_get_option('git_cdnurl_style') ){
+                        $githumb1 = '!githumb1.jpg';
+                        }else{
+                        $githumb1 = '?imageView2/1/w/100/h/64/q/75';
+                    }
             if ($img) {
                 echo '<span class="thumbnail">';
                 echo '<img width="100px" height="64px" src="';
                 echo post_thumbnail_src();
-                echo '?imageView2/1/w/100/h/64/q/75" alt="' . get_the_title() . '" /></span>';
+                echo ''.$githumb1.'" alt="' . get_the_title() . '" /></span>';
             } else {
                 $img = '';
             }
@@ -302,14 +305,13 @@ function git_readers() {
     register_widget('git_reader');
 }
 class git_reader extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_reader',
-            '活跃读者',
-            array('classname' => 'git_reader', 'description' => '显示近期评论频繁的网友头像等'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_reader',
+            'description' => '显示近期评论频繁的网友头像等'
+        );
+        parent::__construct('git_reader', 'Git-活跃读者', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -424,14 +426,13 @@ function git_recs() {
     register_widget('git_rec');
 }
 class git_rec extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_rec',
-            '推荐模块',
-            array('classname' => 'git_rec', 'description' => '五个推荐块'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_rec',
+            'description' => '五个推荐块'
+        );
+        parent::__construct('git_rec', 'Git-推荐模块', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $atitle1 = $instance['atitle1'];
@@ -642,14 +643,13 @@ function git_slicks() {
     register_widget('git_slick');
 }
 class git_slick extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_slick',
-            '幻灯片(风格二)',
-            array('classname' => 'git_slick', 'description' => '带箭头的小幻灯片'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_slick',
+            'description' => '带箭头的小幻灯片'
+        );
+        parent::__construct('git_slick', 'Git-幻灯片(风格二)', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $simg1 = $instance['simg1'];
@@ -666,10 +666,10 @@ class git_slick extends WP_Widget {
         $stitle4 = $instance['stitle4'];
         echo $before_widget;
         echo '<div class="slick" style="height:200px">';
-        echo '<div><a target="_blank" href="' . $slink1 . '" title="' . $stitle1 . '" ><img width="360px" height="200px" src="' . $simg1 . '" ></a></div>';
-        echo '<div><a target="_blank" href="' . $slink2 . '" title="' . $stitle2 . '" ><img width="360px" height="200px" src="' . $simg2 . '" ></a></div>';
-        echo '<div><a target="_blank" href="' . $slink3 . '" title="' . $stitle3 . '" ><img width="360px" height="200px" src="' . $simg3 . '" ></a></div>';
-        echo '<div><a target="_blank" href="' . $slink4 . '" title="' . $stitle4 . '" ><img width="360px" height="200px" src="' . $simg4 . '" ></a></div>';
+        echo '<div><a target="_blank" href="' . $slink1 . '" title="' . $stitle1 . '" ><img alt="' . $stitle1 . '" width="360" height="200" src="' . $simg1 . '" ></a></div>';
+        echo '<div><a target="_blank" href="' . $slink2 . '" title="' . $stitle2 . '" ><img alt="' . $stitle2 . '" width="360" height="200" src="' . $simg2 . '" ></a></div>';
+        echo '<div><a target="_blank" href="' . $slink3 . '" title="' . $stitle3 . '" ><img alt="' . $stitle3 . '" width="360" height="200" src="' . $simg3 . '" ></a></div>';
+        echo '<div><a target="_blank" href="' . $slink4 . '" title="' . $stitle4 . '" ><img alt="' . $stitle4 . '" width="360" height="200" src="' . $simg4 . '" ></a></div>';
         echo '</div>';
         echo $after_widget;
     }
@@ -792,14 +792,13 @@ function git_slides() {
     register_widget('git_slide');
 }
 class git_slide extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_slide',
-            '幻灯片(风格一)',
-            array('classname' => 'git_slide', 'description' => '无箭头小幻灯片'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_slide',
+            'description' => '无箭头小幻灯片'
+        );
+        parent::__construct('git_slide', 'Git-幻灯片(风格一)', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $img1 = $instance['img1'];
@@ -816,10 +815,10 @@ class git_slide extends WP_Widget {
         $ttitle4 = $instance['ttitle4'];
         echo $before_widget;
         echo '<div id="wowslider-container1"><div class="ws_images"><ul>';
-        echo '<li><a target="_blank" href="' . $link1 . '" title="' . $ttitle1 . '" ><img width="360px" height="149px" src="' . $img1 . '" ></a></li>';
-        echo '<li><a target="_blank" href="' . $link2 . '" title="' . $ttitle2 . '" ><img width="360px" height="149px" src="' . $img2 . '" ></a></li>';
-        echo '<li><a target="_blank" href="' . $link3 . '" title="' . $ttitle3 . '" ><img width="360px" height="149px" src="' . $img3 . '" ></a></li>';
-        echo '<li><a target="_blank" href="' . $link4 . '" title="' . $ttitle4 . '" ><img width="360px" height="149px" src="' . $img4 . '" ></a></li>';
+        echo '<li><a target="_blank" href="' . $link1 . '" title="' . $ttitle1 . '" ><img width="360" height="149" alt="' . $ttitle1 . '" src="' . $img1 . '" ></a></li>';
+        echo '<li><a target="_blank" href="' . $link2 . '" title="' . $ttitle2 . '" ><img width="360" height="149" alt="' . $ttitle2 . '" src="' . $img2 . '" ></a></li>';
+        echo '<li><a target="_blank" href="' . $link3 . '" title="' . $ttitle3 . '" ><img width="360" height="149" alt="' . $ttitle3 . '" src="' . $img3 . '" ></a></li>';
+        echo '<li><a target="_blank" href="' . $link4 . '" title="' . $ttitle4 . '" ><img width="360" height="149" alt="' . $ttitle4 . '" src="' . $img4 . '" ></a></li>';
         echo '</ul></div></div>';
         echo $after_widget;
     }
@@ -942,14 +941,13 @@ function git_socials() {
     register_widget('git_social');
 }
 class git_social extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_social',
-            '社交按钮',
-            array('classname' => 'git_social', 'description' => '在这里显示国内常用的社交网站按钮'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_social',
+            'description' => '在这里显示国内常用的社交网站按钮'
+        );
+        parent::__construct('git_social', 'Git-社交按钮', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -957,11 +955,10 @@ class git_social extends WP_Widget {
         echo '<div class="widget widget_text"><div class="textwidget"><div class="social">';
         if (git_get_option('git_weibo')) echo '<a href="' . git_get_option('git_weibo') . '" rel="external nofollow" title="新浪微博" target="_blank"><i class="sinaweibo fa fa-weibo"></i></a>';
         if (git_get_option('git_tqq')) echo '<a  href="' . git_get_option('git_tqq') . '" rel="external nofollow" title="腾讯微博" target="_blank"><i class="tencentweibo fa fa-tencent-weibo"></i></a>';
-        if (git_get_option('git_git')) echo '<a href="' . git_get_option('git_git') . '" rel="external nofollow" title="GIT系统" target="_blank"><i class="git fa fa-git"></i></a>';
+        if (git_get_option('git_git')) echo '<a href="' . git_get_option('git_git') . '" rel="external nofollow" title="Github" target="_blank"><i class="git fa fa-github-alt"></i></a>';
         if (git_get_option('git_baidu')) echo '<a href="' . git_get_option('git_baidu') . '" rel="external nofollow" title="百度贴吧" target="_blank"><i class="baidu fa fa-paw"></i></a>';
         if (git_get_option('git_weixin')) echo '<a class="weixin"><i class="weixins fa fa-weixin"></i><div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title">订阅号“' . git_get_option('git_weixin') . '”</div><div class="popover-content"><img width="200px" height="200px" src="' . git_get_option('git_weixin_qr') . '" ></div></div></div></a>';
-        if (git_get_option('git_pay')) echo '<a class="weixin"><i class="pay fa fa-paypal"></i>
-</i><div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title">支付宝“' . git_get_option('git_pay') . '”</div><div class="popover-content"><img width="200px" height="200px" src="' . git_get_option('git_pay_qr') . '" ></div></div></div></a>';
+        if (git_get_option('git_pay')) echo '<a class="weixin"><i class="pay fa fa-paypal"></i><div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title">支付宝“' . git_get_option('git_pay') . '”</div><div class="popover-content"><img src="' . git_get_option('git_pay_qr') . '" ></div></div></div></a>';
         if (git_get_option('git_emailContact')) echo '<a href="' . git_get_option('git_emailContact') . '" rel="external nofollow" title="Email" target="_blank"><i class="email fa fa-envelope-o"></i></a>';
         if (git_get_option('git_qqContact')) echo '<a href="tencent://message/?uin=' . git_get_option('git_qqContact') . '&Site=&Menu=yes " rel="external nofollow" title="联系QQ" target="_blank"><i class="qq fa fa-qq"></i></a>';
         if (git_get_option('git_rss')) echo '<a href="' . git_get_option('git_rss') . '" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>';
@@ -980,14 +977,13 @@ function git_subscribes() {
     register_widget('git_subscribe');
 }
 class git_subscribe extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_subscribe',
-            '邮箱订阅',
-            array('classname' => 'git_subscribe', 'description' => '显示邮箱订阅组件'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_subscribe',
+            'description' => '显示邮箱订阅组件'
+        );
+        parent::__construct('git_subscribe', 'Git-邮箱订阅', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $title = (!empty($instance['title'])) ? $instance['title'] : '邮件订阅';
@@ -1054,14 +1050,13 @@ function git_tags() {
     register_widget('git_tag');
 }
 class git_tag extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_tag',
-            '标签云',
-            array('classname' => 'git_tag', 'description' => '显示热门标签'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_tag',
+            'description' => '显示热门标签'
+        );
+        parent::__construct('git_tag', 'Git-标签云', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -1141,14 +1136,13 @@ function git_textbanners() {
     register_widget('git_textbanner');
 }
 class git_textbanner extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_textbanner',
-            '特别推荐',
-            array('classname' => 'git_textbanner', 'description' => '显示一个文本特别推荐'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_textbanner',
+            'description' => '显示一个文本特别推荐'
+        );
+        parent::__construct('git_textbanner', 'Git-特别推荐', $widget_ops);
     }
-
     function widget($args, $instance) {
         extract($args);
         $title = apply_filters('widget_name', $instance['title']);
@@ -1241,14 +1235,13 @@ function git_tongji() {
 }
 add_action('widgets_init', 'git_tongji');
 class git_tongji extends WP_Widget {
-    public function __construct()
-    {
-        parent::__construct(
-            'git_tongji',
-            '网站统计',
-            array('classname' => 'git_tongji', 'description' => '显示网站的统计信息'));
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'git_tongji',
+            'description' => '显示网站的统计信息'
+        );
+        parent::__construct(false, 'Git-网站统计', $widget_ops);
     }
-
     function form($instance) {
         $instance = wp_parse_args((array)$instance, array(
             'title' => '网站统计',
@@ -1333,5 +1326,4 @@ class git_tongji extends WP_Widget {
         echo $output;
     }
 }
-
 ?>
