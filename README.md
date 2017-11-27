@@ -36,3 +36,5 @@ to use 'ignore_sticky_posts'
 8.replace get_currentuserinfo with wp_get_current_user()
 
 9.repair jquery script queue if function, repair foot.php,the Jquery use before jquery script.
+
+10. update to Git2.0

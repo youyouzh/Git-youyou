@@ -69,19 +69,5 @@ if ($dHasShare == true) {
         get_template_directory_uri() . '/js/share.js?v=89860593.js?cdnversion="+~(-new Date()/36e5)];</script>';
 }
 ?>
-<?php
-if (git_get_option('git_topnav_b') && !G_is_mobile()) { ?>
-<script type="text/Javascript">
-$(function(){
-    $('#nav-header').posfixed({
-        distance : 0,
-        pos : 'top',
-        type : 'while',
-        hide : false
-    });
-});
-</script>
-<?php
-} ?>
 </body>
 </html>

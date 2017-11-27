@@ -31,6 +31,13 @@ foreach ($result as $post) {
 </div>
 <!-- 最新文章结束 -->
 <?php
+if(git_get_option('git_cdnurl_style') ){
+                $githumb3 = '!githumb3.jpg';
+            }else{
+                $githumb3 = '?imageView2/1/w/185/h/110/q/75';
+            }
+?>
+<?php
 if (git_get_option('git_cat_1')) { ?>
         <div class="widget-title">
 			<h2 class="title-h2"><small><?php
@@ -48,10 +55,10 @@ if (git_get_option('git_cat_1')) { ?>
 				<ul class="related_img" style="display:inline" ><li class="related_box" ><a href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>" ><?php
-       if (git_get_option('git_cdnurl_b') ) {
+       if (git_get_option('git_qncdn_b') ) {
             echo '<img style="width:185px;height:110px" src="';
             echo post_thumbnail_src();
-            echo '?imageView2/1/w/185/h/110/q/75" alt="' . get_the_title() . '" />';
+            echo ''.$githumb3.'" alt="' . get_the_title() . '" />';
         } else {
             echo '<img style="width:185px;height:110px" src="' . get_template_directory_uri() . '/timthumb.php?src=';
             echo post_thumbnail_src();
@@ -81,10 +88,10 @@ if (git_get_option('git_cat_2')) { ?>
 				<ul class="related_img" style="display:inline" ><li class="related_box" ><a href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>" ><?php
-       if (git_get_option('git_cdnurl_b') ) {
+       if (git_get_option('git_qncdn_b') ) {
             echo '<img style="width:185px;height:110px" src="';
             echo post_thumbnail_src();
-            echo '?imageView2/1/w/185/h/110/q/75" alt="' . get_the_title() . '" />';
+            echo ''.$githumb3.'" alt="' . get_the_title() . '" />';
         } else {
             echo '<img style="width:185px;height:110px" src="' . get_template_directory_uri() . '/timthumb.php?src=';
             echo post_thumbnail_src();
@@ -114,10 +121,10 @@ if (git_get_option('git_cat_3')) { ?>
 				<ul class="related_img" style="display:inline" ><li class="related_box" ><a href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>" ><?php
-       if (git_get_option('git_cdnurl_b') ) {
+       if (git_get_option('git_qncdn_b') ) {
             echo '<img style="width:185px;height:110px" src="';
             echo post_thumbnail_src();
-            echo '?imageView2/1/w/185/h/110/q/75" alt="' . get_the_title() . '" />';
+            echo ''.$githumb3.'" alt="' . get_the_title() . '" />';
         } else {
             echo '<img style="width:185px;height:110px" src="' . get_template_directory_uri() . '/timthumb.php?src=';
             echo post_thumbnail_src();
@@ -147,10 +154,10 @@ if (git_get_option('git_cat_4')) { ?>
 				<ul class="related_img" style="display:inline" ><li class="related_box" ><a href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>" ><?php
-       if (git_get_option('git_cdnurl_b') ) {
+       if (git_get_option('git_qncdn_b') ) {
             echo '<img style="width:185px;height:110px" src="';
             echo post_thumbnail_src();
-            echo '?imageView2/1/w/185/h/110/q/75" alt="' . get_the_title() . '" />';
+            echo ''.$githumb3.'" alt="' . get_the_title() . '" />';
         } else {
             echo '<img style="width:185px;height:110px" src="' . get_template_directory_uri() . '/timthumb.php?src=';
             echo post_thumbnail_src();
@@ -180,10 +187,10 @@ if (git_get_option('git_cat_5')) { ?>
 				<ul class="related_img" style="display:inline" ><li class="related_box" ><a href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>" ><?php
-       if (git_get_option('git_cdnurl_b') ) {
+       if (git_get_option('git_qncdn_b') ) {
             echo '<img style="width:185px;height:110px" src="';
             echo post_thumbnail_src();
-            echo '?imageView2/1/w/185/h/110/q/75" alt="' . get_the_title() . '" />';
+            echo ''.$githumb3.'" alt="' . get_the_title() . '" />';
         } else {
             echo '<img style="width:185px;height:110px" src="' . get_template_directory_uri() . '/timthumb.php?src=';
             echo post_thumbnail_src();
@@ -213,10 +220,10 @@ if (git_get_option('git_cat_6')) { ?>
 				<ul class="related_img" style="display:inline" ><li class="related_box" ><a href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>" ><?php
-       if (git_get_option('git_cdnurl_b') ) {
+       if (git_get_option('git_qncdn_b') ) {
             echo '<img style="width:185px;height:110px" src="';
             echo post_thumbnail_src();
-            echo '?imageView2/1/w/185/h/110/q/75" alt="' . get_the_title() . '" />';
+            echo ''.$githumb3.'" alt="' . get_the_title() . '" />';
         } else {
             echo '<img style="width:185px;height:110px" src="' . get_template_directory_uri() . '/timthumb.php?src=';
             echo post_thumbnail_src();
@@ -246,10 +253,10 @@ if (git_get_option('git_cat_7')) { ?>
 				<ul class="related_img" style="display:inline" ><li class="related_box" ><a href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>" ><?php
-       if (git_get_option('git_cdnurl_b') ) {
+       if (git_get_option('git_qncdn_b') ) {
             echo '<img style="width:185px;height:110px" src="';
             echo post_thumbnail_src();
-            echo '?imageView2/1/w/185/h/110/q/75" alt="' . get_the_title() . '" />';
+            echo ''.$githumb3.'" alt="' . get_the_title() . '" />';
         } else {
             echo '<img style="width:185px;height:110px" src="' . get_template_directory_uri() . '/timthumb.php?src=';
             echo post_thumbnail_src();
@@ -279,10 +286,10 @@ if (git_get_option('git_cat_8')) { ?>
 				<ul class="related_img" style="display:inline" ><li class="related_box" ><a href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>" ><?php
-       if (git_get_option('git_cdnurl_b') ) {
+       if (git_get_option('git_qncdn_b') ) {
             echo '<img style="width:185px;height:110px" src="';
             echo post_thumbnail_src();
-            echo '?imageView2/1/w/185/h/110/q/75" alt="' . get_the_title() . '" />';
+            echo ''.$githumb3.'" alt="' . get_the_title() . '" />';
         } else {
             echo '<img style="width:185px;height:110px" src="' . get_template_directory_uri() . '/timthumb.php?src=';
             echo post_thumbnail_src();

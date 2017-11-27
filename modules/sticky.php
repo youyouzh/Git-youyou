@@ -25,7 +25,7 @@ wp_reset_query();
 <div class="ws_thumbs">
 <div>
 <?php
-if (git_get_option('git_cdnurl_b')) {
+if (git_get_option('git_qncdn_b')) {
     $sticky = get_option('sticky_posts');
     rsort($sticky);
     query_posts(array(
@@ -35,10 +35,15 @@ if (git_get_option('git_cdnurl_b')) {
     ));
     while (have_posts()):
         the_post();
+            if(git_get_option('git_cdnurl_style') ){
+                $githumb2 = '!githumb2.jpg';
+            }else{
+                $githumb2 = '?imageView2/1/w/120/h/62/q/75';
+            }
         echo '<a target="_blank" href="#" title="' . get_the_title() . '">';
         echo '<img src="';
         echo post_thumbnail_src();
-        echo '?imageView2/1/w/120/h/62/q/75" /></a>';
+        echo ''.$githumb2.'" alt="' . get_the_title() . '" /></a>';
     endwhile;
     wp_reset_query();
 } else {
@@ -62,4 +67,4 @@ if (git_get_option('git_cdnurl_b')) {
 </div>
 </div><div class="ws_shadow"></div>
 	</div><script type="text/javascript" src="<?php
-echo esc_url( get_template_directory_uri() ); ?>/js/slider.js"></script>
+echo esc_url( get_template_directory_uri() ); ?>/assets/js/slider.js"></script>

@@ -2,7 +2,7 @@
 <div class="content-wrap">
 	<div class="content">
 <?php
-if (git_get_option('git_singleMenu_b')) echo '<div class="breadcrumbs">' . deel_breadcrumbs() . '</div>'; 
+if (git_get_option('git_singleMenu_b') || get_post_type() !== 'product') echo '<div class="breadcrumbs">' . deel_breadcrumbs() . '</div>';
 if(git_get_option('git_suojin')){echo '<style type="text/css">.article-content p {text-indent: 2em;}.article-content p a,.article-content p video,.article-content table p{text-indent: 0 !important;}</style>';}
 ?>
 <?php
@@ -33,13 +33,13 @@ while (have_posts()):
 				<span class="muted"><i class="fa fa-user"></i> <a href="<?php
     echo get_author_posts_url(get_the_author_meta('ID')) ?>"><?php
     echo get_the_author() ?></a></span>
-    
+
     <?php
     $zhuanzai = get_post_meta($post->ID, 'git_zhuanzai_name', true);
     if ( $zhuanzai ) echo '<span class="muted"><i class="fa fa-info-circle"></i> 来源：<a rel="nofollow" target="_blank" href="' . get_post_meta($post->ID, 'git_zhuanzai_link', true) . '">' .get_post_meta($post->ID, 'git_zhuanzai_name', true) . '</a></span>'; ?>
-    
-				<time class="muted"><i class="fa fa-clock-o"></i> <?php
-    echo timeago(get_gmt_from_date(get_the_time('Y-m-d G:i:s'))) ?></time>
+
+				<span class="muted"><i class="fa fa-clock-o"></i> <?php
+    echo timeago(get_gmt_from_date(get_the_time('Y-m-d G:i:s'))) ?></span>
 				<span class="muted"><i class="fa fa-eye"></i> <?php
     deel_views('次浏览'); ?></span>
 				<?php
@@ -50,13 +50,13 @@ while (have_posts()):
     if (comments_open()) echo '<span class="muted"><i class="fa fa-comments-o"></i> <a href="' . get_comments_link() . '">' . get_comments_number('0', '1', '%') . '个评论</a></span>'; ?>
 				<?php
     if (git_get_option('git_qr_b') && !G_is_mobile()) { ?><span class="muted"><i class="fa fa-qrcode"></i> <a style="cursor : pointer;" onMouseOver="document.all.qr.style.visibility=''" onMouseOut="document.all.qr.style.visibility='hidden'">扫描二维码</a>
-				<span id="qr" style="visibility: hidden;"><img style="position:absolute;z-index:99999;" src="http://s.jiathis.com/qrcode.php?url=<?php
+				<span id="qr" style="visibility: hidden;"><img alt = <?php the_title();?> style="position:absolute;z-index:99999;" src="https://pan.baidu.com/share/qrcode?w=145&h=145&url=<?php
         the_permalink(); ?>"/></span></span><?php
     } ?>
 				<span class="muted"><?php
     edit_post_link('[编辑]'); ?></span>
 			</div>
-		<?php 
+		<?php
 		$jiage = get_post_meta($post->ID, 'git_product_jiage', true);
 		$fahuodi = get_post_meta($post->ID, 'git_product_fahuodi', true);
 		$cpjianjie = get_post_meta($post->ID, 'git_product_cpjianjie', true);
@@ -114,7 +114,7 @@ while (have_posts()):
         'previouspagelink' => '',
         'nextpagelink' => "<span>下一页</span>"
     )); ?>
-
+<?php if(!defined('UM_DIR')): ?>
 <div class="article-social">
 			<a href="javascript:;" data-action="ding" data-id="<?php
     the_ID(); ?>" id="Addlike" class="action<?php
@@ -127,6 +127,7 @@ while (have_posts()):
     if (git_get_option('git_bdshare_b')) echo '<span class="or"><style>.article-social .weixin:hover{background:#fff;}</style><a class="weixin" style="border-bottom:0px;font-size:15pt;cursor:pointer;">赏<div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title"><center>[' . git_get_option('git_pay') . ']</center></div><div class="popover-content"><img width="200px" height="200px" src="' . git_get_option('git_pay_qr') . '" ></div></div></div></a></span>';
     deel_share(); ?>
 </div>
+<?php endif; ?>
 	</article>
 		<?php
 endwhile; ?>
@@ -140,54 +141,57 @@ previous_post_link('<i class="fa fa-angle-double-left"></i> %link'); ?></span>
 			<span class="article-nav-next"><?php
 next_post_link('%link  <i class="fa fa-angle-double-right"></i>'); ?></span>
 		</nav>
+<?php if (git_get_option('git_auther_b') && defined('UM_DIR')) { ?>
+<?php um_author_info_module(); ?>
+<?php } ?>
 <?php
-if (git_get_option('git_auther_b')) { ?>
-<div class="sg-author clr">
+if (git_get_option('git_auther_b') && !defined('UM_DIR')) { ?>
+<div class="ab-author clr">
 <div class="img"><?php
-    echo get_avatar(get_the_author_email() , '512'); ?></div>
-<div class="sg-author-info">
-<div class="word">
-<div class="wordname">关于作者：<?php
+    echo get_avatar(get_the_author_meta('email') , '512'); ?></div>
+<div class="ab-author-info">
+<div class="words">
+<div class="wordsname">关于作者：<?php
     the_author_posts_link(); ?></div>
-<div class="authordes"><?php
+<div class="authorde"><?php
     the_author_meta('description'); ?></div>
-<div class="authorsocial">
-<span class="social-icon-wrap"><a class="as-img as-home" target="_blank" href="<?php
+<div class="authorsocials">
+<span class="socials-icon-wrap"><a class="ab-img ab-home" target="_blank" href="<?php
     the_author_meta('url'); ?>" title="作者主页"><i class="fa fa-home"></i>作者主页</a></span>
 <?php
     if (git_get_option('git_pay_qr')) {
-        echo '<span class="social-icon-wrap"><a id="showdiv" class="as-img as-donate" target="_blank" href="#donatecoffee"> <i class="fa fa-coffee"></i>赞助作者 </a></span>';
+        echo '<span class="socials-icon-wrap"><a id="showdiv" class="ab-img ab-donate" target="_blank" href="#donatecoffee"> <i class="fa fa-coffee"></i>赞助作者 </a></span>';
     } ?>
-<span class="social-icon-wrap"><a class="as-img as-email" target="_blank" href="mailto:<?php
+<span class="socials-icon-wrap"><a class="ab-img ab-email" target="_blank" href="mailto:<?php
     echo get_the_author_meta('user_email'); ?>" title="给我写信"><i class="fa fa-envelope"></i></a></span>
 <?php
     if (get_the_author_meta('sina_weibo')) {
-        echo '<span class="social-icon-wrap"><a class="as-img as-sinawb" target="_blank" href="' . get_the_author_meta('sina_weibo') . '" title="微博"><i class="fa fa-weibo"></i></a></span>';
+        echo '<span class="socials-icon-wrap"><a class="ab-img ab-sinawb" target="_blank" href="' . get_the_author_meta('sina_weibo') . '" title="微博"><i class="fa fa-weibo"></i></a></span>';
     } ?>
 <?php
     if (get_the_author_meta('qq_weibo')) {
-        echo '<span class="social-icon-wrap"><a class="as-img as-qqwb" target="_blank" href="' . get_the_author_meta('qq_weibo') . '" title="腾讯微博"><i class="fa fa-tencent-weibo"></i></a></span>';
+        echo '<span class="socials-icon-wrap"><a class="ab-img ab-qqwb" target="_blank" href="' . get_the_author_meta('qq_weibo') . '" title="腾讯微博"><i class="fa fa-tencent-weibo"></i></a></span>';
     } ?>
 <?php
     if (get_the_author_meta('twitter')) {
-        echo '<span class="social-icon-wrap"><a class="as-img as-twitter" target="_blank" href="' . get_the_author_meta('twitter') . '" title="Twitter"><i class="fa fa-twitter"></i></a></span>';
+        echo '<span class="socials-icon-wrap"><a class="ab-img ab-twitter" target="_blank" href="' . get_the_author_meta('twitter') . '" title="Twitter"><i class="fa fa-twitter"></i></a></span>';
     } ?>
 <?php
     if (get_the_author_meta('google_plus')) {
-        echo '<span class="social-icon-wrap"><a class="as-img as-googleplus" target="_blank" href="' . get_the_author_meta('google_plus') . '" title="Google+"><i class="fa fa-google-plus"></i></a></span>';
+        echo '<span class="socials-icon-wrap"><a class="ab-img ab-googleplus" target="_blank" href="' . get_the_author_meta('google_plus') . '" title="Google+"><i class="fa fa-google-plus"></i></a></span>';
     } ?>
 <?php
     if (get_the_author_meta('github')) {
-        echo '<span class="social-icon-wrap"><a class="as-img as-git" target="_blank" href="' . get_the_author_meta('github') . '" title="Git"><i class="fa fa-git"></i></a></span>';
+        echo '<span class="socials-icon-wrap"><a class="ab-img ab-git" target="_blank" href="' . get_the_author_meta('github') . '" title="Git"><i class="fa fa-git"></i></a></span>';
     } ?>
 <?php
     if (get_the_author_meta('baidu')) {
-        echo '<span class="social-icon-wrap"><a class="as-img as-weixin" target="_blank" href="http://tieba.baidu.com/home/main?un=' . get_the_author_meta('baidu') . '&ie=utf-8" id="as-weixin-a" title="百度贴吧"><i class="fa fa-paw"></i>
+        echo '<span class="socials-icon-wrap"><a class="ab-img ab-weixin" target="_blank" href="http://tieba.baidu.com/home/main?un=' . get_the_author_meta('baidu') . '&ie=utf-8" id="ab-weixin-a" title="百度贴吧"><i class="fa fa-paw"></i>
 </a></span>';
     } ?>
 <?php
     if (get_the_author_meta('qq')) {
-        echo '<span class="social-icon-wrap"><a class="as-img as-qq" target="_blank" href="tencent://message/?uin=' . get_the_author_meta('qq') . '&Site=&Menu=yes" title="QQ交谈"><i class="fa fa-qq"></i></a></span>';
+        echo '<span class="socials-icon-wrap"><a class="ab-img ab-qq" target="_blank" href="tencent://message/?uin=' . get_the_author_meta('qq') . '&Site=&Menu=yes" title="QQ交谈"><i class="fa fa-qq"></i></a></span>';
     } ?>
 </div>
 </div>
@@ -195,7 +199,7 @@ if (git_get_option('git_auther_b')) { ?>
 </div>
 <?php
 } ?>
-<div id="donatecoffee" style="overflow:auto;display:none;"><img width="400px" height="400px" src="<?php echo git_get_option('git_pay_qr');?>"></div>
+<div id="donatecoffee" style="overflow:auto;display:none;"><img width="400" height="400" alt="支持作者一杯咖啡" src="<?php echo git_get_option('git_pay_qr');?>"></div>
 
 		<div class="related_top">
 			<?php
