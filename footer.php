@@ -19,7 +19,6 @@ if (git_get_option('git_superfoot_b') && !G_is_mobile()) { ?>
 <?php
 } ?>
 <footer style="border-top: 1px solid ;
-        background-image: url('<?php echo esc_url( get_template_directory_uri() ); ?>/css/img/footbg.jpg');
         background-repeat: repeat;" class="footer">
     <div class="footer-inner"><div class="footer-copyright" align="center">
             <?php
