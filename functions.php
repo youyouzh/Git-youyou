@@ -1136,7 +1136,8 @@ add_filter('the_content', 'git_esc_html', 2);
 add_filter('comment_text', 'git_esc_html', 2);
 add_filter('asgarosforum_filter_post_content', 'git_esc_html', 2);
 
-
+/* 修改与2018-06-08
+暂时去掉该部分，避免和插件冲突
 //强制兼容<pre>
 function git_prettify_replace($text){
 $replace = array( '<pre>' => '<pre class="prettyprint linenums" >' );
@@ -1145,6 +1146,7 @@ return $text;
 }
 add_filter('the_content', 'git_prettify_replace');
 add_filter('asgarosforum_filter_post_content', 'git_prettify_replace');
+*/
 
 //首页隐藏一些分类
 function exclude_category_home($query) {
