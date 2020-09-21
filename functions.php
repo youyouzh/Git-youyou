@@ -1,4 +1,16 @@
 <?php
+
+// 禁用搜索参数
+$the_host = $_SERVER['HTTP_HOST'];
+$the_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+$the_url = strtolower($the_url);
+$pos = strpos($the_url, "?");
+if($pos !== false)
+{
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location:http://uusama.com/');//可以设定您需要跳转的地址
+}
+
 add_action('after_setup_theme', 'deel_setup');
 include ('inc/theme-options.php');
 include ('inc/theme-widgets.php');
