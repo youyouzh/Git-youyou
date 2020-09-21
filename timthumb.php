@@ -56,7 +56,6 @@ if(! isset($ALLOWED_SITES)){
 	//下面输入您的外链图片域名
 	$ALLOWED_SITES = array (
 		'image.baidu.com',
-		'images.yusi123.com',
 		'clouddn.com',
 		'tietuku.com',
 		'qiniudn.com',
@@ -67,7 +66,9 @@ if(! isset($ALLOWED_SITES)){
 		'sinaimg.cn',
 		'wal8.com',
 		'poco.cn',
-		'upyun.com'
+		'upyun.com',
+        'local.uusama.com',
+        'uusama.com'
 	);
 }
 /*后面止步*/

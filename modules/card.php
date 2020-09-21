@@ -16,11 +16,7 @@ if (is_home()) { ?>
     while (have_posts()):
         the_post(); ?>
 	        <div class="card col span_1_of_4" role="main">
-			<div class="shop-item">
-				<a href="<?php
-        the_permalink(); ?>" alt="<?php
-        the_title(); ?>" title="<?php
-        the_title(); ?>" class="fancyimg home-blog-entry-thumb">
+			<div class="card-item">
 					<div class="thumb-img focus">
 					<div class="metacat"><?php
     if (!is_category()) {
@@ -32,17 +28,21 @@ if (is_home()) { ?>
 </div><a href="<?php
         the_permalink(); ?>" title="<?php
         the_title(); ?>"><?php
-        if (git_get_option('git_cdnurl_b') ) {
+        if (git_get_option('git_qncdn_b') ) {
+            if(git_get_option('git_cdnurl_style') ){
+                $githumb5 = '!githumb5.jpg';
+            }else{
+                $githumb5 = '?imageView2/1/w/253/h/169/q/75';
+            }
             echo '<img class="thumb" style="width:253px;height:169px" src="';
             echo post_thumbnail_src();
-            echo '?imageView2/1/w/253/h/169/q/75" alt="' . get_the_title() . '" />';
+            echo ''.$githumb5.'" alt="' . get_the_title() . '" />';
         } else {
             echo '<img class="thumb" style="width:253px;height:169px" src="' . get_template_directory_uri() . '/timthumb.php?src=';
             echo post_thumbnail_src();
             echo '&h=169&w=253&q=90&zc=1&ct=1" alt="' . get_the_title() . '" />';
         } ?></a>
 			</div>
-				</a>
 				<h3><a href="<?php
         the_permalink(); ?>" alt="<?php
         the_title(); ?>" title="<?php
@@ -56,8 +56,8 @@ if (is_home()) { ?>
         } else {
             echo deel_strimwidth(strip_tags(apply_filters('the_excerpt', strip_shortcodes($post->post_excerpt))) , 0, git_get_option('git_excerpt_length') ? git_get_option('git_excerpt_length') : 100 , '……');
         } ?></p>
-				<div class="pricebtn"><i class="fa fa-calendar"></i> <?php
-        the_time('m-d'); ?><a class="buy" href="<?php
+				<div class="cardpricebtn"><i class="fa fa-calendar"></i> <?php
+        the_time('m-d'); ?><a class="cardbuy" href="<?php
         the_permalink(); ?>"><i class="fa fa-eye"></i> 立刻查看</a></div>
 			</div>
 		</div>
