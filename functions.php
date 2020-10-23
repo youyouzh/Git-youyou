@@ -1,11 +1,9 @@
 <?php
 
 // 禁用查询参数
-$the_host = $_SERVER['HTTP_HOST'];
-$the_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-$the_url = strtolower($the_url);
-$pos = strpos($the_url, "?");
-if($pos !== false)
+$current_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+$current_url = strtolower($current_url);
+if($strpos($current_url, "?") !== false && strpos($current_url, 'wp-admin') === false)
 {
     header('HTTP/1.1 301 Moved Permanently');
     header('Location:https://uusama.com/'); // 可以设定您需要跳转的地址
